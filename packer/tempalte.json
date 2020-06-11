@@ -2,13 +2,13 @@
     "_comment": "Variables should be populated from CI pipeline parameters",
     "variables": {
         "ami_name_prefix": "{{env `AMI_NAME_PREFIX`}}",
-        "aws_region": "{{env `AWS_REGION`}}",
-        "aws_profile": "{{env `AWS_PROFILE`}}",
-        "aws_instance_type": "{{env `AWS_INSTANCE_TYPE`}}",
-        "aws_source_ami_filter_name": "{{env `AWS_SOURCE_AMI_FILTER_NAME`}}",
-        "aws_source_ami_filter_owner": "{{env `AWS_SOURCE_AMI_FILTER_OWNER`}}",
         "ansible_host_alias": "{{env `ANSIBLE_HOST_ALIAS`}}",
+        "aws_instance_type": "{{env `AWS_INSTANCE_TYPE`}}",
+        "aws_profile": "{{env `AWS_PROFILE`}}",
+        "aws_region": "{{env `AWS_REGION`}}",
         "packer_builder_subnet_name": "{{env `PACKER_BUILDER_SUBNET_NAME`}}",
+        "packer_source_ami_filter_name": "{{env `PACKER_SOURCE_AMI_FILTER_NAME`}}",
+        "packer_source_ami_filter_owner": "{{env `PACKER_SOURCE_AMI_FILTER_OWNER`}}",
         "ssh_username": "{{env `SSH_USERNAME`}}",
         "version": "{{env `VERSION`}}"
     },
@@ -20,11 +20,11 @@
             "source_ami_filter": {
                 "filters": {
                     "virtualization-type": "hvm",
-                    "name": "{{user `aws_source_ami_filter_name`}}*",
+                    "name": "{{user `packer_source_ami_filter_name`}}*",
                     "root-device-type": "ebs"
                 },
                 "owners": [
-                    "{{user `aws_source_ami_filter_owner`}}"
+                    "{{user `packer_source_ami_filter_owner`}}"
                 ],
                 "most_recent": true
             },
