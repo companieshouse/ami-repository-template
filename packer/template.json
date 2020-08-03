@@ -31,7 +31,7 @@
             },
             "instance_type": "{{user `aws_instance_type`}}",
             "ssh_username": "{{user `ssh_username`}}",
-            "ami_name": "{{user `ami_name_prefix`}}-ami-{{user `version`}}",
+            "ami_name": "{{user `ami_name_prefix`}}-{{user `version`}}",
             "subnet_filter": {
               "filters": {
                 "tag:Name": "{{user `packer_builder_subnet_name`}}"
@@ -51,11 +51,11 @@
                 }
             ],
             "tags": {
-                "Name": "{{user `ami_name_prefix`}}-ami-{{user `version`}}",
+                "Name": "{{user `ami_name_prefix`}}-{{user `version`}}",
                 "Builder": "packer"
             },
             "snapshot_tags": {
-                "Name": "{{user `ami_name_prefix`}}-ami-snapshot-{{user `version`}}",
+                "Name": "{{user `ami_name_prefix`}}-snapshot-{{user `version`}}",
                 "Builder": "packer"
             },
             "iam_instance_profile": "packer-builders-{{user `aws_region`}}"
