@@ -14,12 +14,6 @@ variable "aws_instance_type" {
   description = "The EC2 instance type used when building the AMI"
 }
 
-variable "aws_profile" {
-  type        = string
-  default     = "development-eu-west-2"
-  description = "The profile name associated with AWS credentials that will be used when building the AMI"
-}
-
 variable "aws_region" {
   type        = string
   default     = "eu-west-2"
