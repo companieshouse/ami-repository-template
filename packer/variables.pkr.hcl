@@ -49,6 +49,12 @@ variable "root_volume_size_gb" {
   description = "The EC2 instance root volume size in Gibibytes (GiB)"
 }
 
+variable "ssh_private_key_file" {
+  type        = string
+  default     = "/home/packer/.ssh/packer-builder"
+  description = "The path to the common Packer builder private SSH key"
+}
+
 variable "ssh_username" {
   type        = string
   default     = "centos"
