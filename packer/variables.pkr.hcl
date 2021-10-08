@@ -15,7 +15,7 @@ variable "ansible_host_alias" {
 
 variable "aws_instance_type" {
   type        = string
-  default     = "t2.small"
+  default     = "t3.small"
   description = "The EC2 instance type used when building the AMI"
 }
 
@@ -40,6 +40,18 @@ variable "aws_source_ami_owner_id" {
 variable "aws_subnet_filter_name" {
   type        = string
   description = "The subnet filter string. Any filter described by the DescribeSubnets API documentation is valid. If multiple subnets match then the one with the most IPv4 addresses free will be used"
+}
+
+variable "force_delete_snapshot" {
+  type        = bool
+  default     = false
+  description = "Delete snapshots associated with AMIs, which have been deregistered by force_deregister"
+}
+
+variable "force_deregister" {
+  type        = bool
+  default     = false
+  description = "Deregister an existing AMI if one with the same name already exists"
 }
 
 variable "playbook_file_path" {
