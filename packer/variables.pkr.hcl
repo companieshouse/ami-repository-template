@@ -5,12 +5,8 @@ variable "ami_account_ids" {
 
 variable "ami_name_prefix" {
   type        = string
+  default     = "unnamed"
   description = "The prefix string that will be used for the name tags of the resulting AMI and snapshot(s); the version string will be appended automatically"
-}
-
-variable "ansible_host_alias" {
-  type        = string
-  description = "The Ansible host alias"
 }
 
 variable "aws_instance_type" {
@@ -27,19 +23,29 @@ variable "aws_region" {
 
 variable "aws_source_ami_filter_name" {
   type        = string
-  default     = "CentOS 8* x86_64*"
+  default     = "amzn2-base-*"
   description = "The source AMI filter string. Any filter described by the DescribeImages API documentation is valid. If multiple images match then the latest will be used"
 }
 
 variable "aws_source_ami_owner_id" {
   type        = string
-  default     = "125523088429"
   description = "The source AMI owner ID; used in combination with aws_source_ami_filter_name to filter for matching source AMIs"
 }
 
 variable "aws_subnet_filter_name" {
   type        = string
   description = "The subnet filter string. Any filter described by the DescribeSubnets API documentation is valid. If multiple subnets match then the one with the most IPv4 addresses free will be used"
+}
+
+variable "configuration_group" {
+  type        = string
+  default     = "unnamed"
+  description = "The name of the group to which to add the instance for configuration purposes"
+}
+
+variable "data_volume_size_gib" {
+  type        = number
+  description = "The EC2 instance data volume size in Gibibytes (GiB)"
 }
 
 variable "force_delete_snapshot" {
@@ -74,7 +80,7 @@ variable "ssh_private_key_file" {
 
 variable "ssh_username" {
   type        = string
-  default     = "centos"
+  default     = "ec2-user"
   description = "The username Packer will use when connecting with SSH"
 }
 

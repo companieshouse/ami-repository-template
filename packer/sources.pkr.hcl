@@ -18,6 +18,13 @@ source "amazon-ebs" "builder" {
     delete_on_termination = true
   }
 
+  launch_block_device_mappings {
+    device_name = "/dev/xvdb"
+    volume_size = var.data_volume_size_gib
+    volume_type = "gp2"
+    delete_on_termination = true
+  }
+
   security_group_filter {
     filters = {
       "group-name": "packer-builders-${var.aws_region}"
@@ -36,14 +43,19 @@ source "amazon-ebs" "builder" {
 
   subnet_filter {
     filters = {
-          "tag:Name": "${var.aws_subnet_filter_name}"
+      "tag:Name": "${var.aws_subnet_filter_name}"
     }
     most_free = true
     random = false
   }
 
+  run_tags = {
+    AMI     = "${var.ami_name_prefix}"
+    Service = "packer-builder"
+  }
+
   tags = {
-    Name    = "${var.ami_name_prefix}-${var.version}"
     Builder = "packer-{{packer_version}}"
+    Name    = "${var.ami_name_prefix}-${var.version}"
   }
 }
