@@ -4,7 +4,7 @@ Provides a base template for Packer and Ansible based AMI builds.
 
 ### Ansible
 
-All Ansible configuration resides in the `./ansible` directory. The Ansble configuration will be called during the provisioning step of the Packer build as defined in `./packer/build.pkr.hcl`.
+All Ansible configuration resides in the `./ansible` directory. The Ansible configuration will be called during the provisioning step of the Packer build as defined in `./packer/build.pkr.hcl`.
 
 This template provides the basic code layout and structure only.
 
