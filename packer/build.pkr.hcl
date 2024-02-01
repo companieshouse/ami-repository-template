@@ -10,4 +10,11 @@ build {
       "-e", "aws_region=${var.aws_region}"
     ]
   }
+
+  provisioner "shell" {
+    inline = [
+      "sudo find /root /home -name authorized_keys -delete",
+      "sudo find /root /home -name '.*history' -delete"
+    ]
+  }
 }

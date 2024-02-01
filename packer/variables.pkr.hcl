@@ -43,9 +43,21 @@ variable "configuration_group" {
   description = "The name of the group to which to add the instance for configuration purposes"
 }
 
+variable "data_volume_iops" {
+  type        = number
+  default     = 3000
+  description = "The baseline IOPS for the data EBS volume; 3000 is the gp3 default"
+}
+
 variable "data_volume_size_gib" {
   type        = number
   description = "The EC2 instance data volume size in Gibibytes (GiB)"
+}
+
+variable "data_volume_throughput" {
+  type        = number
+  default     = 125
+  description = "The throughput, in MiB/s, for the data EBS volume; 125 is the gp3 default"
 }
 
 variable "force_delete_snapshot" {
@@ -60,16 +72,40 @@ variable "force_deregister" {
   description = "Deregister an existing AMI if one with the same name already exists"
 }
 
+variable "kms_key_id" {
+  type        = string
+  default     = "alias/packer-builders-eu-west-2-kms"
+  description = "The KMS key ID or alias to use when encrypting the AMI EBS volumes; defaults to the AWS managed key if empty"
+}
+
 variable "playbook_file_path" {
   type        = string
   default     = "../ansible/playbook.yml"
   description = "The relative path to the Ansible playbook file"
 }
 
+variable "root_volume_iops" {
+  type        = number
+  default     = 3000
+  description = "The baseline IOPS for the root EBS volume; 3000 is the gp3 default"
+}
+
 variable "root_volume_size_gb" {
   type        = number
   default     = 20
   description = "The EC2 instance root volume size in Gibibytes (GiB)"
+}
+
+variable "root_volume_throughput" {
+  type        = number
+  default     = 125
+  description = "The throughput, in MiB/s, for the root EBS volume; 125 is the gp3 default"
+}
+
+variable "ssh_clear_authorized_keys" {
+  type        = bool
+  default     = true
+  description = "Defines whether the authorized_keys file should be cleared, post-build"
 }
 
 variable "ssh_private_key_file" {
