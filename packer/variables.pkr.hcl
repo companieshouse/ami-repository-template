@@ -74,7 +74,7 @@ variable "force_deregister" {
 
 variable "kms_key_id" {
   type        = string
-  default     = "alias/packer-builders-eu-west-2-kms"
+  default     = "alias/packer-builders-kms"
   description = "The KMS key ID or alias to use when encrypting the AMI EBS volumes; defaults to the AWS managed key if empty"
 }
 
