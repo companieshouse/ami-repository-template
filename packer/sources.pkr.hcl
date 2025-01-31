@@ -43,26 +43,26 @@ source "amazon-ebs" "builder" {
 
   security_group_filter {
     filters = {
-      "group-name": "packer-builders-${var.aws_region}"
+      "group-name" : "packer-builders-${var.aws_region}"
     }
   }
 
   source_ami_filter {
     filters = {
       virtualization-type = "hvm"
-      name =  "${var.aws_source_ami_filter_name}"
-      root-device-type = "ebs"
+      name                = "${var.aws_source_ami_filter_name}"
+      root-device-type    = "ebs"
     }
-    owners = ["${var.aws_source_ami_owner_id}"]
+    owners      = ["${var.aws_source_ami_owner_id}"]
     most_recent = true
   }
 
   subnet_filter {
     filters = {
-      "tag:Name": "${var.aws_subnet_filter_name}"
+      "tag:Name" : "${var.aws_subnet_filter_name}"
     }
     most_free = true
-    random = false
+    random    = false
   }
 
   run_tags = {
